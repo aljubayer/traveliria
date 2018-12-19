@@ -1,5 +1,9 @@
 "use strict";
 
+(function ($) {
+  $('.sidenav').sidenav();
+  $(".dropdown-trigger").dropdown();
+})(jQuery)
 /******************************
  Main Theme JS File
 

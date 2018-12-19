@@ -1,15 +1,31 @@
 <?php
+/**
+* functions.php, all core functions will be loaded from here
+*
+* @package 			Codexin
+* @subpackage 		Core
+* @since 			1.0
+*/
+
+// Do not allow directly accessing this file.
+defined( 'ABSPATH' ) OR die( esc_html__( 'This script cannot be accessed directly.', 'traveliria' ) );
+
+
 //https://www.googleapis.com/webfonts/v1/webfonts?key=AIzaSyCtKdEyOrSfM5ffSGkC56heac_ttC6Zw5U
+
+/*
+ * Codexin enqueue styles and scripts.
+ */
+
 if ( ! function_exists( 'codexin_enqueue' ) ) {
 
-    function codexin_enqueue()
-    {
+    function codexin_enqueue() {
 
         wp_enqueue_style( 'materialize', trailingslashit( get_template_directory_uri() ) . 'assets/css/materialize.min.css', array(), '1.0.0', 'all');
         wp_enqueue_style( 'material-icons', 'https://fonts.googleapis.com/icon?family=Material+Icons', array(), '1.0.0', 'all');
-        // wp_enqueue_style( 'pt-sans', 'https://fonts.googleapis.com/css?family=PT+Sans', array(), '1.0.0', 'all');
         wp_enqueue_style( 'google-fonts', 'https://fonts.googleapis.com/css?family=Assistant|Cabin|Oxygen|PT+Sans', array(), '1.0.0', 'all');
-        wp_enqueue_style( 'custom', get_stylesheet_uri(), array(), '1.0.0', 'all');
+
+        wp_enqueue_style( 'style', get_stylesheet_uri(), array(), '1.0.0', 'all');
 
         wp_enqueue_script('materialize-js', trailingslashit( get_template_directory_uri() ) . 'assets/js/materialize.min.js', array('jquery'), '1.0.0', true);
         wp_enqueue_script('custom-js', trailingslashit( get_template_directory_uri() ) . 'assets/js/custom/custom.js', array('jquery'), '1.0.0', true);
@@ -19,10 +35,12 @@ if ( ! function_exists( 'codexin_enqueue' ) ) {
 }
 add_action('wp_enqueue_scripts', 'codexin_enqueue');
 
+/*
+ * Codexin theme supports.
+ */
 
 if ( ! function_exists( 'codexin_theme_support' ) ) {
-    function codexin_theme_support()
-    {
+    function codexin_theme_support() {
         /*
          * Make theme available for translation.
          * Translations can be filed in the /languages/ directory.
@@ -41,7 +59,6 @@ if ( ! function_exists( 'codexin_theme_support' ) ) {
          * Enable support for Post Thumbnails on posts and pages.lity/featured-images-post-thumbnails.
          */
         add_theme_support( 'post-thumbnails' );
-
         set_post_thumbnail_size( 1024, 700);
 
         
@@ -50,27 +67,18 @@ if ( ! function_exists( 'codexin_theme_support' ) ) {
         * Enable support for post-formats
         */
         add_theme_support( 'post-formats', array(
-           'aside',
+        //    'aside',
            'gallery',
            'link',
-           'image',
+        //    'image',
            'quote',
-           'status',
+        //    'status',
            'video',
            'audio',
-           'chat' 
+        //    'chat' 
         ) );
 
         
-        // This theme uses wp_nav_menu() in two locations.
-        register_nav_menus(
-            array(
-                'menu-1' => __('Primary', 'traveliria'),
-                'footer' => __('Footer Menu', 'traveliria'),
-                'social' => __('Social Links Menu', 'traveliria'),
-            )
-        );
-
         /*
          * Switch default core markup.
          */
@@ -90,6 +98,7 @@ if ( ! function_exists( 'codexin_theme_support' ) ) {
          */       
         add_theme_support( 'custom-header' );
 
+        
         /**
          * Add support for core custom logo.
          */
@@ -102,23 +111,34 @@ if ( ! function_exists( 'codexin_theme_support' ) ) {
                 'flex-height' => false,
             )
         );
+        /**
+		 * Adding custom background support to the theme
+		 */	
+		add_theme_support( 'custom-background' );
+
+
+        // Add image sizes
+        if( function_exists( 'add_image_size' ) ) {
+            add_image_size('codexin-fr-rect-one', 600, 375, true);
+            add_image_size('codexin-fr-rect-two', 800, 354, true);
+            add_image_size('codexin-fr-rect-three', 1170, 400, true);
+            add_image_size('codexin-fr-rect-four', 800, 450, true);
+        }
 
         // Add theme support for selective refresh for widgets.
         add_theme_support( 'customize-selective-refresh-widgets' );
 
-        // Add support for Block Styles.
+        // Add support for Block Styles (Gutenberg). 
         add_theme_support( 'wp-block-styles' );
 
-        // Add support for full and wide align images.
+        // Add support for full and wide align images (Gutenberg).
         add_theme_support( 'align-wide' );
-
-        // Add support for editor styles.
-        //add_theme_support( 'editor-styles' );
-
-        // Enqueue editor styles.
+        
+        
+        // Enqueue editor styles(Gutenberg).
         add_editor_style( 'style-editor.css' );
 
-        // Add custom editor font sizes.
+        // Add custom editor font sizes(Gutenberg).
         add_theme_support(
             'editor-font-sizes',
             array(
@@ -149,19 +169,19 @@ if ( ! function_exists( 'codexin_theme_support' ) ) {
             )
         );
 
-        // Editor color palette.
+        // Editor color palette(Gutenberg).
         add_theme_support(
             'editor-color-palette',
             array(
                 array(
                     'name' => __('Primary', 'traveliria'),
                     'slug' => 'primary',
-                    'color' => '#333'//twentynineteen_hsl_hex('default' === get_theme_mod('primary_color') ? 199 : get_theme_mod('primary_color_hue', 199), 100, 33),
+                    'color' => '#333'
                 ),
                 array(
                     'name' => __('Secondary', 'traveliria'),
                     'slug' => 'secondary',
-                    'color' => '#000'//twentynineteen_hsl_hex('default' === get_theme_mod('primary_color') ? 199 : get_theme_mod('primary_color_hue', 199), 100, 23),
+                    'color' => '#000'
                 ),
                 array(
                     'name' => __('Dark Gray', 'traveliria'),
@@ -181,9 +201,36 @@ if ( ! function_exists( 'codexin_theme_support' ) ) {
             )
         );
 
-        // Add support for responsive embedded content.
+        // Add support for responsive embedded content(Gutenberg).
         add_theme_support('responsive-embeds');
     }
 
 }
 add_action( 'after_setup_theme', 'codexin_theme_support' );
+
+/*
+ * Codexin nav menu registers.
+ */
+
+if ( ! function_exists( 'codexin_nav_menu_register' ) ) {
+    function codexin_nav_menu_register() {
+        // This theme uses wp_nav_menu() in 4 locations.
+        register_nav_menus(
+            array(
+                'menu-primary-main' => __('Primary', 'traveliria'),
+                'menu-primary-center' => __('Primary Center', 'traveliria'),
+                'footer' => __('Footer Menu', 'traveliria'),
+                'social' => __('Social Links Menu', 'traveliria'),
+            )
+        );
+    }
+}
+add_action( 'after_setup_theme', 'codexin_nav_menu_register' );
+
+
+
+/**
+ * Require menu file
+ *
+ */
+require_once trailingslashit( get_template_directory() ) . 'inc/lib/menus.php';
