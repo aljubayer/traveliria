@@ -584,10 +584,19 @@
 }
 
 //-------------------- Flex Center Column --------------------//
-// Usage @include cx-flex-column-center();
+// Usage @include cx-flex-column-center;
 @mixin cx-flex-column-center(){
     display:flex;
     flex-direction:column;
     align-items:center;
     justify-content:center;
+}
+
+//-------------------- Flex Right Column --------------------//
+// Usage @include cx-flex-column-enc;
+@mixin cx-flex-column-end(){
+    display:flex;
+    flex-direction:column;
+    align-items:flex-end;
+    justify-content:flex-end;
 }

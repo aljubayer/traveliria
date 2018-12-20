@@ -46,60 +46,80 @@ defined( 'ABSPATH' ) OR die( esc_html__( 'This script cannot be accessed directl
 		</div>
 	</section>	 -->
 
-   <nav>
-    <div class="nav-wrapper">
-      <a href="#!" class="brand-logo">Logo</a> 
-      <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>    
-      <ul class="right hide-on-med-and-down">
-        <li>
-        	<a class="dropdown-trigger" href="#!" data-target="dropdown1">Dropdown<i class="material-icons right">arrow_drop_down</i>
-        	</a>
-        	<ul id="dropdown1" class="dropdown-content">
-				<li><a href="#!">one</a></li>
-				<li><a href="#!">two</a></li>
-				<li class="divider"></li>
-				<li><a href="#!">three</a></li>
-			</ul>
-        </li>
-        <li><a href="badges.html">Components</a></li>
-        <li><a href="collapsible.html">Javascript</a></li>
-        <li><a href="mobile.html">Mobile</a></li>
-      </ul>     
-    </div>
-  </nav>
-
-
-
-  <ul id="slide-out" class="sidenav">
-    <li><a href="#!"><i class="material-icons">cloud</i>First Link With Icon</a></li>
-    <li><a href="#!">Second Link</a></li>
-    <li><div class="divider"></div></li>
-    <li><a class="subheader">Subheader</a></li>
-    <li>
-    	<a class="waves-effect" href="#!">Third Link With Waves</a>
-    </li>
-    <li>
-    	<a class="dropdown-trigger" href="#!" data-target="dropdown1">Dropdown<i class="material-icons right">arrow_drop_down</i>
-    	</a>
-    	<ul id="dropdown1" class="dropdown-content">
-			<li><a href="#!">one</a></li>
-			<li><a href="#!">two</a></li>
-			<li class="divider"></li>
-			<li><a href="#!">three</a></li>
-		</ul>
-    </li>
-    <li><a class="waves-effect" href="#!">Third Link With Waves</a></li>
-    <li><a class="waves-effect" href="#!">Third Link With Waves</a></li>
-    <li><a class="waves-effect" href="#!">Third Link With Waves</a></li>
-    <li><a class="waves-effect" href="#!">Third Link With Waves</a></li>
-    <li><a class="waves-effect" href="#!">Third Link With Waves</a></li>
-    <li><a class="waves-effect" href="#!">Third Link With Waves</a></li>
-    <li><a class="waves-effect" href="#!">Third Link With Waves</a></li>    
-  </ul>
-  
-    
-  
-
-
-
-
+<nav class="main-nav" role="navigation">
+   <!-- Mobile menu toggle button (hamburger/x icon) -->
+   <input id="main-menu-state" type="checkbox" />
+   <label class="main-menu-btn" for="main-menu-state">
+   <span class="main-menu-btn-icon"></span> Toggle main menu visibility
+   </label>
+   <h2 class="nav-brand"><a href="#">Brand</a></h2>
+   <!-- Sample menu definition -->
+   <ul id="main-menu" class="sm sm-simple main-menu-primary">
+      <li><a href="#">Home</a></li>
+      <li>
+         <a href="#">About</a>
+         <ul>
+            <li><a href="#">Introduction to SmartMenus jQuery</a></li>
+            <li><a href="#">Demos + themes</a></li>
+            <li><a href="#">The author</a></li>
+            <li>
+               <a href="#">The company</a>
+               <ul>
+                  <li><a href="#">About Vadikom</a></li>
+                  <li><a href="#">Projects</a></li>
+                  <li><a href="#">Services</a></li>
+                  <li><a href="#">Privacy policy</a></li>
+               </ul>
+            </li>
+         </ul>
+      </li>
+      <li><a href="#">Download</a></li>
+      <li>
+         <a href="#">Support</a>
+         <ul>
+            <li><a href="#">Premium support</a></li>
+            <li><a href="#">Forums</a></li>
+         </ul>
+      </li>
+      <li><a href="#">Docs</a></li>
+      <li>
+         <a href="#">Sub test</a>
+         <ul>
+            <li><a href="#">Dummy item</a></li>
+            <li><a href="#">Dummy item</a></li>
+            <li><a href="#" class="disabled">Disabled menu item</a></li>
+            <li><a href="#">Dummy item</a></li>
+            <li>
+               <a href="#">more...</a>
+               <ul>
+                  <li><a href="#">A pretty long text to test the default subMenusMaxWidth:20em setting for the sub menus</a></li>
+                  <li><a href="#">Dummy item</a></li>
+                  <li><a href="#">Dummy item</a></li>
+                  <li>
+                     <a href="#">more...</a>
+                     <ul>
+                        <li><a href="#">Dummy item</a></li>
+                        <li><a href="#" class="current">A 'current' class item</a></li>
+                        <li><a href="#">Dummy item</a></li>
+                        <li>
+                           <a href="#">more...</a>
+                           <ul>
+                              <li><a href="#">subMenusMinWidth</a></li>
+                              <li><a href="#">10em</a></li>
+                              <li><a href="#">forced.</a></li>
+                           </ul>
+                        </li>
+                        <li><a href="#">Dummy item</a></li>
+                        <li><a href="#">Dummy item</a></li>
+                     </ul>
+                  </li>
+                  <li><a href="#">Dummy item</a></li>
+                  <li><a href="#">Dummy item</a></li>
+                  <li><a href="#">Dummy item</a></li>
+               </ul>
+            </li>
+         </ul>
+      </li>
+      <li><a href="#">Contact</a></li>
+   </ul>
+</nav>
